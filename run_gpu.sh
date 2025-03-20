@@ -22,9 +22,9 @@ for benchmark in ${benchmarks[@]}; do
 	set -x
 	nvcc -o ./$benchmark.run_gpu ./taco_gpu_drivers/full/main_${benchmark}_full_gpu.cu ./util.cu -I ./ -lrt
 	#Consistent caches
-	data=$(eval "../$benchmark.run_gpu $times")
+	data=$(eval "./$benchmark.run_gpu $times")
 	echo "Ran $benchmark got $data"
-	data=$(eval "../$benchmark.run_gpu $times")
+	data=$(eval "./$benchmark.run_gpu $times")
         echo "$benchmark $data" | tee -a ./$outf
         #break
 done
