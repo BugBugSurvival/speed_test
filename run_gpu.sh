@@ -20,11 +20,11 @@ echo "Dumping into $outf"
 for benchmark in ${benchmarks[@]}; do
        	echo "Running $benchmark...."
 	set -x
-	nvcc -o ../$benchmark.run_gpu ../taco_gpu_drivers/full/main_${benchmark}_full_gpu.cu ../util.cu -I .. -lrt
+	nvcc -o ./$benchmark.run_gpu ./taco_gpu_drivers/full/main_${benchmark}_full_gpu.cu ./util.cu -I ./ -lrt
 	#Consistent caches
 	data=$(eval "../$benchmark.run_gpu $times")
 	echo "Ran $benchmark got $data"
 	data=$(eval "../$benchmark.run_gpu $times")
-        echo "$benchmark $data" | tee -a ../scripts/$outf
+        echo "$benchmark $data" | tee -a ./$outf
         #break
 done
